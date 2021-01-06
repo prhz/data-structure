@@ -2,13 +2,13 @@
 #include <stdlib.h>
 #include <string.h>
 
-#define MEM_ERROR 1  // ÄÚ´æÉêÇëÊ§°Ü
+#define MEM_ERROR 1  
 #define MAX_SIZE 255
 
 typedef struct{
 	int Key;
 	int Value;
-}ElemType;			// »ù±¾ÀàÐÍ
+}ElemType;			
 
 typedef struct ENode{
 	ElemType elem;
@@ -20,34 +20,34 @@ typedef struct HNode{
 	int MaxSize;
 	ENode *Head;
 }*LinkedList;
-// ´øÍ·½áµã
 
-bool Initial(LinkedList &list); // ³õÊ¼»¯Á´±í
-bool Clear(LinkedList &list);	// Çå¿ÕÁÐ±í
-bool Destroy(LinkedList &list); // Ïú»ÙÁÐ±í
 
-bool Insert(LinkedList &list, int index, ElemType elem);					// ²åÈë²Ù×÷
-bool Append(LinkedList &list, ElemType elem);								// ×·¼Ó²Ù×÷
-bool InsertPrior(LinkedList &list, ENode *node, ElemType elem);							// Ç°²å
-bool InsertNext(LinkedList &list, ENode *node, ElemType elem);							// ºó²å
+bool Initial(LinkedList &list); 
+bool Clear(LinkedList &list);	
+bool Destroy(LinkedList &list); 
 
-bool Delete(LinkedList &list, int index, ElemType &elem);					// É¾³ý²Ù×÷
-bool DeleteAllByElem(LinkedList &list, ElemType elem);						// É¾³ýÁÐ±íÖÐËùÓÐµÄÖ¸¶¨ÔªËØ
-bool DeleteNode(LinkedList &list, ENode *node);								// É¾³ý½Úµã
+bool Insert(LinkedList &list, int index, ElemType elem);					
+bool Append(LinkedList &list, ElemType elem);								
+bool InsertPrior(LinkedList &list, ENode *node, ElemType elem);							
+bool InsertNext(LinkedList &list, ENode *node, ElemType elem);							
 
-bool ModifyElemByIndex(LinkedList &list, int index, ElemType elem);			// Í¨¹ýË÷ÒýÐÞ¸ÄÔªËØ
-bool ModifyAllByElem(LinkedList &list, ElemType oldElem, ElemType newElem);	// ÐÞ¸ÄËùÓÐ¾ÉÔªËØ±äÎªÐÂÔªËØ
+bool Delete(LinkedList &list, int index, ElemType &elem);					
+bool DeleteAllByElem(LinkedList &list, ElemType elem);						
+bool DeleteNode(LinkedList &list, ENode *node);								
 
-bool GetElemByIndex(LinkedList list, int index, ElemType &elem);			// Í¨¹ýË÷Òý»ñµÃÔªËØ	
-int GetIndexByElem(LinkedList list, ElemType elem);							// Í¨¹ýÔªËØ»ñµÃË÷Òý
+bool ModifyElemByIndex(LinkedList &list, int index, ElemType elem);			
+bool ModifyAllByElem(LinkedList &list, ElemType oldElem, ElemType newElem);	
+
+bool GetElemByIndex(LinkedList list, int index, ElemType &elem);			
+int GetIndexByElem(LinkedList list, ElemType elem);							
 bool GetNodeByIndex(LinkedList list, int index, ENode* &node);
 bool GetNodeByElem(LinkedList list, ElemType elem, ENode* &node);
-int GetLength(LinkedList list);				// ·µ»Øµ±Ç°´óÐ¡
+int GetLength(LinkedList list);				
 int GetMaxSize(LinkedList list);
 
-bool IsEmpty(LinkedList list);				// ÅÐ¿Õ²Ù×÷
-bool Equal(ElemType elem1, ElemType elem2); // µÈÖµÅÐ¶Ï
-void toString(LinkedList list);				// ´òÓ¡ÄÚÈÝ
+bool IsEmpty(LinkedList list);				
+bool Equal(ElemType elem1, ElemType elem2); 
+void toString(LinkedList list);				
 bool ContainNode(LinkedList list, ENode *node);
 
 
@@ -85,12 +85,10 @@ bool Clear(LinkedList &list)
 	};
 	return true;
 }
-/**
-*	Ïú»ÙÁ´±í  TODO
-*/
+
 bool Destroy(LinkedList &list)
 {
-	// Ò»¸öÒ»¸öÔªËØÏú»Ù
+	
 	Clear(list);
 	list->Head = NULL;
 	list->Length = 0;
@@ -128,9 +126,7 @@ bool ModifyAllByElem(LinkedList &list, ElemType oldElem, ElemType newElem)
 	}
 	return b;
 }
-/**
-*	·µ»Ø½ÚµãË÷Òý
-*/
+
 int GetIndexByElem(LinkedList list, ElemType elem)
 {
 	int index = -1;
@@ -146,15 +142,14 @@ int GetIndexByElem(LinkedList list, ElemType elem)
 }
 bool GetNodeByIndex(LinkedList list, int index, ENode* &node)
 {
-	if(index < -1 || index > GetLength(list)) // Ë÷ÒýÅÐ¶ÏÊÇ·ñºÏ·¨
+	if(index < -1 || index > GetLength(list)) 
 	{
 		return false;
 	}
-// head -> NULL	
-// head -> 0 -> 1 -> 2 -> 3 -> NULL
+
 	ENode *p = list->Head;
 	int current = -1;
-	while(p!=NULL && current < index) // ²éÕÒ Ë÷Òý index ËùÔÚµÄ½Úµã
+	while(p!=NULL && current < index) 
 	{
 		p = p->next;
 		current ++;
@@ -166,9 +161,7 @@ bool GetNodeByIndex(LinkedList list, int index, ENode* &node)
 	node = p;
 	return true;
 }
-/**
-*	¸ù¾ÝË÷ÒýÕÒµ½½Úµã
-*/
+
 bool GetElemByIndex(LinkedList list, int index, ElemType &elem)
 {
 	ENode* node;
@@ -190,9 +183,7 @@ bool DeleteAllByElem(LinkedList &list, ElemType elem)
 	}
 	return b;
 }
-/**
-*	ÊÇ·ñ°üº¬Ö¸¶¨½Úµã
-*/
+
 bool ContainNode(LinkedList list, ENode *node)
 {
 	if(node == NULL || IsEmpty(list))
@@ -211,17 +202,13 @@ bool ContainNode(LinkedList list, ENode *node)
 	return false;
 }
 
-/**
-*	×·¼Ó²Ù×÷
-*/
+
 bool Append(LinkedList &list, ElemType elem)
 {
 	bool b = Insert(list, GetLength(list), elem);
 	return b;
 }
-/**
-*	²åÈë²Ù×÷
-*/
+
 bool Insert(LinkedList &list, int index, ElemType elem)
 {
 	ENode *p;
@@ -232,7 +219,7 @@ bool Insert(LinkedList &list, int index, ElemType elem)
 	return false;
 }
 
-// head -> 0 -> 1 -> 2 -> 3 -> NULL
+
 bool DeleteNode(LinkedList &list, ENode *node)
 {
 	if(ContainNode(list, node))
@@ -251,20 +238,17 @@ bool DeleteNode(LinkedList &list, ENode *node)
 	}
 	return false;
 }	
-/**
-*	É¾³ý Ë÷ÒýÎª index µÄ½Úµã
-*/
-// List : Head -> NULL	
+	
 bool Delete(LinkedList &list, int index, ElemType &elem)
 {
 	ENode *p;
 	if(GetNodeByIndex(list, index-1, p)){
-		// p Îª index-1 ½Úµã
+		
 		ENode *dNode = p->next;
 		if(p->next == NULL){
 			return false;
 		}
-		elem = dNode->elem; // ·µ»Ø´ËÔªËØ
+		elem = dNode->elem;
 	
 		p->next = dNode->next;
 		free(dNode);
@@ -274,9 +258,7 @@ bool Delete(LinkedList &list, int index, ElemType &elem)
 	return false;
 
 }
-/**
-*	Ç°²å²Ù×÷
-*/
+
 bool InsertPrior(LinkedList &list, ENode *node, ElemType elem)
 {
 	if(node == NULL)
@@ -292,9 +274,7 @@ bool InsertPrior(LinkedList &list, ENode *node, ElemType elem)
 	list->Length ++;
 	return true;
 }
-/**
-*	ºó²å²Ù×÷
-*/
+
 bool InsertNext(LinkedList &list, ENode *node, ElemType elem)
 {
 	if(node == NULL)
@@ -310,9 +290,7 @@ bool InsertNext(LinkedList &list, ENode *node, ElemType elem)
 	list->Length ++;
 	return true;
 }
-/**
-*	Êä³ö
-*/
+
 void toString(LinkedList list)
 {
 	printf("Type: LinkedList\n");
@@ -333,26 +311,20 @@ void toString(LinkedList list)
 
 }
 
-/**
-*	»ñÈ¡³¤¶È
-*/
+
 int GetLength(LinkedList list)
 {
 	int len = (list->Length >= 0) ? list->Length : 0;
 	return len;
 }
-/**
-*	»ñÈ¡×î´óSize
-*/
+
 int GetMaxSize(LinkedList list)
 {
 	int Msize = (list->MaxSize >= 0) ? list->MaxSize : 0;
 	return Msize;
 }
 
-/**
-*	³õÊ¼»¯Á´±í
-*/
+
 bool Initial(LinkedList &list)
 {
 	list = (HNode *)malloc(sizeof(HNode));
@@ -371,9 +343,7 @@ bool Initial(LinkedList &list)
 	
 	return true;
 }
-/**
-*	µÈÖµÅÐ¶Ï
-*/
+
 bool Equal(ElemType elem1, ElemType elem2)
 {
 	if(elem1.Key == elem2.Key && elem1.Value == elem2.Value){
@@ -381,9 +351,7 @@ bool Equal(ElemType elem1, ElemType elem2)
 	}
 	return false;
 }
-/**
-*	ÅÐ¿Õ²Ù×÷
-*/
+
 bool IsEmpty(LinkedList list)
 {
 	return (list->Length == 0);
