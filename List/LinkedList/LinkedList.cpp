@@ -2,13 +2,13 @@
 #include <stdlib.h>
 #include <string.h>
 
-#define MEM_ERROR 1  // 内存申请失败
+#define MEM_ERROR 1  // 脛脷麓忙脡锚脟毛脢搂掳脺
 #define MAX_SIZE 255
 
 typedef struct{
 	int Key;
 	int Value;
-}ElemType;			// 基本类型
+}ElemType;			// 禄霉卤戮脌脿脨脥
 
 typedef struct ENode{
 	ElemType elem;
@@ -20,34 +20,34 @@ typedef struct HNode{
 	int MaxSize;
 	ENode *Head;
 }*LinkedList;
-// 带头结点
+// 麓酶脥路陆谩碌茫
 
-bool Initial(LinkedList &list); // 初始化链表
-bool Clear(LinkedList &list);	// 清空列表
-bool Destroy(LinkedList &list); // 销毁列表
+bool Initial(LinkedList &list); // 鲁玫脢录禄炉脕麓卤铆
+bool Clear(LinkedList &list);	// 脟氓驴脮脕脨卤铆
+bool Destroy(LinkedList &list); // 脧煤禄脵脕脨卤铆
 
-bool Insert(LinkedList &list, int index, ElemType elem);					// 插入操作
-bool Append(LinkedList &list, ElemType elem);								// 追加操作
-bool InsertPrior(LinkedList &list, ENode *node, ElemType elem);							// 前插
-bool InsertNext(LinkedList &list, ENode *node, ElemType elem);							// 后插
+bool Insert(LinkedList &list, int index, ElemType elem);					// 虏氓脠毛虏脵脳梅
+bool Append(LinkedList &list, ElemType elem);								// 脳路录脫虏脵脳梅
+bool InsertPrior(LinkedList &list, ENode *node, ElemType elem);							// 脟掳虏氓
+bool InsertNext(LinkedList &list, ENode *node, ElemType elem);							// 潞贸虏氓
 
-bool Delete(LinkedList &list, int index, ElemType &elem);					// 删除操作
-bool DeleteAllByElem(LinkedList &list, ElemType elem);						// 删除列表中所有的指定元素
-bool DeleteNode(LinkedList &list, ENode *node);								// 删除节点
+bool Delete(LinkedList &list, int index, ElemType &elem);					// 脡戮鲁媒虏脵脳梅
+bool DeleteAllByElem(LinkedList &list, ElemType elem);						// 脡戮鲁媒脕脨卤铆脰脨脣霉脫脨碌脛脰赂露篓脭陋脣脴
+bool DeleteNode(LinkedList &list, ENode *node);								// 脡戮鲁媒陆脷碌茫
 
-bool ModifyElemByIndex(LinkedList &list, int index, ElemType elem);			// 通过索引修改元素
-bool ModifyAllByElem(LinkedList &list, ElemType oldElem, ElemType newElem);	// 修改所有旧元素变为新元素
+bool ModifyElemByIndex(LinkedList &list, int index, ElemType elem);			// 脥篓鹿媒脣梅脪媒脨脼赂脛脭陋脣脴
+bool ModifyAllByElem(LinkedList &list, ElemType oldElem, ElemType newElem);	// 脨脼赂脛脣霉脫脨戮脡脭陋脣脴卤盲脦陋脨脗脭陋脣脴
 
-bool GetElemByIndex(LinkedList list, int index, ElemType &elem);			// 通过索引获得元素	
-int GetIndexByElem(LinkedList list, ElemType elem);							// 通过元素获得索引
+bool GetElemByIndex(LinkedList list, int index, ElemType &elem);			// 脥篓鹿媒脣梅脪媒禄帽碌脙脭陋脣脴	
+int GetIndexByElem(LinkedList list, ElemType elem);							// 脥篓鹿媒脭陋脣脴禄帽碌脙脣梅脪媒
 bool GetNodeByIndex(LinkedList list, int index, ENode* &node);
 bool GetNodeByElem(LinkedList list, ElemType elem, ENode* &node);
-int GetLength(LinkedList list);				// 返回当前大小
+int GetLength(LinkedList list);				// 路碌禄脴碌卤脟掳麓贸脨隆
 int GetMaxSize(LinkedList list);
 
-bool IsEmpty(LinkedList list);				// 判空操作
-bool Equal(ElemType elem1, ElemType elem2); // 等值判断
-void toString(LinkedList list);				// 打印内容
+bool IsEmpty(LinkedList list);				// 脜脨驴脮虏脵脳梅
+bool Equal(ElemType elem1, ElemType elem2); // 碌脠脰碌脜脨露脧
+void toString(LinkedList list);				// 麓貌脫隆脛脷脠脻
 bool ContainNode(LinkedList list, ENode *node);
 
 
@@ -71,23 +71,31 @@ int main()
 	Append(list,elem2);
 	toString(list);
 
-	Delete(list, 2, temp);
+	Destroy(list);
+
 	toString(list);
 
 	return 0;
 }
 bool Clear(LinkedList &list)
 {
-
-	return false;
+	ElemType temp;
+	while(Delete(list, 0, temp)){
+		printf("%d\n", list->Length);
+	};
+	return true;
 }
 /**
-*	销毁链表  TODO
+*	脧煤禄脵脕麓卤铆  TODO
 */
 bool Destroy(LinkedList &list)
 {
-	// 一个一个元素销毁
-	return false; 
+	// 脪禄赂枚脪禄赂枚脭陋脣脴脧煤禄脵
+	Clear(list);
+	list->Head = NULL;
+	list->Length = 0;
+	list->MaxSize = 0;
+	return true; 
 }
 bool GetNodeByElem(LinkedList list, ElemType elem, ENode* &node)
 {
@@ -121,7 +129,7 @@ bool ModifyAllByElem(LinkedList &list, ElemType oldElem, ElemType newElem)
 	return b;
 }
 /**
-*	返回节点索引
+*	路碌禄脴陆脷碌茫脣梅脪媒
 */
 int GetIndexByElem(LinkedList list, ElemType elem)
 {
@@ -138,7 +146,7 @@ int GetIndexByElem(LinkedList list, ElemType elem)
 }
 bool GetNodeByIndex(LinkedList list, int index, ENode* &node)
 {
-	if(index < -1 || index > GetLength(list)) // 索引判断是否合法
+	if(index < -1 || index > GetLength(list)) // 脣梅脪媒脜脨露脧脢脟路帽潞脧路篓
 	{
 		return false;
 	}
@@ -146,7 +154,7 @@ bool GetNodeByIndex(LinkedList list, int index, ENode* &node)
 // head -> 0 -> 1 -> 2 -> 3 -> NULL
 	ENode *p = list->Head;
 	int current = -1;
-	while(p!=NULL && current < index) // 查找 索引 index 所在的节点
+	while(p!=NULL && current < index) // 虏茅脮脪 脣梅脪媒 index 脣霉脭脷碌脛陆脷碌茫
 	{
 		p = p->next;
 		current ++;
@@ -159,7 +167,7 @@ bool GetNodeByIndex(LinkedList list, int index, ENode* &node)
 	return true;
 }
 /**
-*	根据索引找到节点
+*	赂霉戮脻脣梅脪媒脮脪碌陆陆脷碌茫
 */
 bool GetElemByIndex(LinkedList list, int index, ElemType &elem)
 {
@@ -183,7 +191,7 @@ bool DeleteAllByElem(LinkedList &list, ElemType elem)
 	return b;
 }
 /**
-*	是否包含指定节点
+*	脢脟路帽掳眉潞卢脰赂露篓陆脷碌茫
 */
 bool ContainNode(LinkedList list, ENode *node)
 {
@@ -204,7 +212,7 @@ bool ContainNode(LinkedList list, ENode *node)
 }
 
 /**
-*	追加操作
+*	脳路录脫虏脵脳梅
 */
 bool Append(LinkedList &list, ElemType elem)
 {
@@ -212,7 +220,7 @@ bool Append(LinkedList &list, ElemType elem)
 	return b;
 }
 /**
-*	插入操作
+*	虏氓脠毛虏脵脳梅
 */
 bool Insert(LinkedList &list, int index, ElemType elem)
 {
@@ -244,15 +252,19 @@ bool DeleteNode(LinkedList &list, ENode *node)
 	return false;
 }	
 /**
-*	删除 索引为 index 的节点
-*/	
+*	脡戮鲁媒 脣梅脪媒脦陋 index 碌脛陆脷碌茫
+*/
+// List : Head -> NULL	
 bool Delete(LinkedList &list, int index, ElemType &elem)
 {
 	ENode *p;
 	if(GetNodeByIndex(list, index-1, p)){
-		// p 为 index-1 节点
+		// p 脦陋 index-1 陆脷碌茫
 		ENode *dNode = p->next;
-		elem = dNode->elem; // 返回此元素
+		if(p->next == NULL){
+			return false;
+		}
+		elem = dNode->elem; // 路碌禄脴麓脣脭陋脣脴
 	
 		p->next = dNode->next;
 		free(dNode);
@@ -263,7 +275,7 @@ bool Delete(LinkedList &list, int index, ElemType &elem)
 
 }
 /**
-*	前插操作
+*	脟掳虏氓虏脵脳梅
 */
 bool InsertPrior(LinkedList &list, ENode *node, ElemType elem)
 {
@@ -281,7 +293,7 @@ bool InsertPrior(LinkedList &list, ENode *node, ElemType elem)
 	return true;
 }
 /**
-*	后插操作
+*	潞贸虏氓虏脵脳梅
 */
 bool InsertNext(LinkedList &list, ENode *node, ElemType elem)
 {
@@ -299,7 +311,7 @@ bool InsertNext(LinkedList &list, ENode *node, ElemType elem)
 	return true;
 }
 /**
-*	输出
+*	脢盲鲁枚
 */
 void toString(LinkedList list)
 {
@@ -309,7 +321,7 @@ void toString(LinkedList list)
 
 	ENode *hNode = list->Head;
 	ENode *pNode = hNode;
-	while((pNode=pNode->next)!=NULL)
+	while(hNode!=NULL && (pNode=pNode->next)!=NULL)
 	{
 		if(pNode->next == NULL){
 			printf("%d", pNode->elem.Key);
@@ -322,7 +334,7 @@ void toString(LinkedList list)
 }
 
 /**
-*	获取长度
+*	禄帽脠隆鲁陇露脠
 */
 int GetLength(LinkedList list)
 {
@@ -330,7 +342,7 @@ int GetLength(LinkedList list)
 	return len;
 }
 /**
-*	获取最大Size
+*	禄帽脠隆脳卯麓贸Size
 */
 int GetMaxSize(LinkedList list)
 {
@@ -339,7 +351,7 @@ int GetMaxSize(LinkedList list)
 }
 
 /**
-*	初始化链表
+*	鲁玫脢录禄炉脕麓卤铆
 */
 bool Initial(LinkedList &list)
 {
@@ -360,7 +372,7 @@ bool Initial(LinkedList &list)
 	return true;
 }
 /**
-*	等值判断
+*	碌脠脰碌脜脨露脧
 */
 bool Equal(ElemType elem1, ElemType elem2)
 {
@@ -370,7 +382,7 @@ bool Equal(ElemType elem1, ElemType elem2)
 	return false;
 }
 /**
-*	判空操作
+*	脜脨驴脮虏脵脳梅
 */
 bool IsEmpty(LinkedList list)
 {
